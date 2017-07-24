@@ -1,0 +1,232 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Vue-Koa-Tut",
+		"_postman_id": "44b5940d-9bf3-de4e-f13b-2d8ef8648c33",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get User",
+			"request": {
+				"url": "http://localhost:3000/user/majorpayne",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create New User",
+			"request": {
+				"url": "http://localhost:3000/user/new",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"majorpayne\",\n\t\"password\": \"majorpayne123\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"url": "http://localhost:3000/user",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"majorpayne\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Tasks",
+			"request": {
+				"url": "http://localhost:3000/task/majorpayne",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"url": "http://localhost:3000/task",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"majorpayne\",\n\t\"taskname\": \"eat\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Task",
+			"request": {
+				"url": "http://localhost:3000/task",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"majorpayne\",\n\t\"taskname\": \"eat\",\n\t\"newTaskName\": \"sleep\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Task 2",
+			"request": {
+				"url": "http://localhost:3000/task",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"majorpayne\",\n\t\"taskname\": \"sleep\",\n\t\"newTaskName\": \"eat\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task 1",
+			"request": {
+				"url": "http://localhost:3000/task",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"majorpayne\",\n\t\"taskname\": \"eat\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task 2",
+			"request": {
+				"url": "http://localhost:3000/task",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"taskname\": \"sleep\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get JWT",
+			"request": {
+				"url": "http://localhost:3000/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"request": {
+				"url": "http://localhost:3000/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"majorpayne\",\n\t\"password\": \"majorpayne123\",\n\t\"client_id\": \"my-awesome-clientid\",\n\t\"client_secret\": \"my-awesome-clientSecret\",\n\t\"grant_type\": \"password\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
