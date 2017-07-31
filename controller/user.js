@@ -11,8 +11,11 @@ exports.getUser = async ctx => {
   // grab user from database by username
   const user = await User.findOneAsync({username: ctx.params.username})
   if (!user) {throw new Error('User not found.')}
+  // grab task data for user.id
+  const taskList = await Task.findAsync({user: user.id})
+  if (!taskList) {throw new Error('Task List not found')}
   // send proper user info in response
-  ctx.body = {username: user.username, tasks: user.tasks}
+  ctx.body = {username: user.username, tasks: taskList, id: user.id}
 }
 
 // create new user

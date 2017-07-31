@@ -110,7 +110,9 @@ app.use(router(_ => {
   _.post('/token',
     passport.authenticate('clientPassword', { session: false }),
     authServer.token(),
-    authServer.errorHandler())
+    authServer.errorHandler()),
+  // create new user
+  _.post('/user/new', user.createUser)
 }))
 
 // // jwt config, any routes after this will require a JWT to be accessed
@@ -120,8 +122,6 @@ app.use(jwt({secret: config.secret}))
 app.use(router(_ => {
   // get user by username
   _.get('/user/:username', user.getUser),
-  // create new user
-  _.post('/user/new', user.createUser),
   // delete user by username
   _.delete('/user', user.deleteUser),
   // get user tasks
@@ -131,7 +131,7 @@ app.use(router(_ => {
   // edit task
   _.put('/task', task.editTask),
   // delete task
-  _.delete('/task', task.deleteTask)
+  _.delete('/task/:username/:taskId', task.deleteTask)
 }))
 
 app.listen(3000)

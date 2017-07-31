@@ -37,18 +37,19 @@ exports.createTask = async ctx => {
   const newTask = await Task.createAsync({name: taskname, user: userId})
   if (!newTask) {throw new Error('Task failed to create.')}
   // send success signal
-  ctx.status = 200
-  ctx.body = 'success'
+  ctx.body = {
+    taskname: newTask.name,
+    id: newTask.id
+  }
 }
 
 // edit task
 exports.editTask = async ctx => {
-  // grab the username, old task name, and new taskname
-  const username = ctx.request.body.username
-  const taskname = ctx.request.body.taskname
+  // grab the taskId, and new taskname
+  const taskId = ctx.request.body.taskId
   const newTaskName = ctx.request.body.newTaskName
   // Find the task and update it
-  const editTask = await Task.findOneAndUpdateAsync({name: taskname}, {name: newTaskName})
+  const editTask = await Task.findByIdAndUpdateAsync(taskId, {name: newTaskName})
   if (!editTask) {throw new Error('Failed to update task.')}
   // send success signal
   ctx.status = 200
@@ -58,17 +59,14 @@ exports.editTask = async ctx => {
 // delete task
 exports.deleteTask = async ctx => {
   // grab the username and taskname
-  const username = ctx.request.body.username
-  const taskname = ctx.request.body.taskname
+  const username = ctx.params.username
+  const taskId = ctx.params.taskId
   // get the user
   const user = await User.findOneAsync({username})
   if (!user) {throw new Error('User not found')}
-  // get the task
-  const task = await Task.findOneAsync({name: taskname})
-  if (!task) {throw new Error('Task not found')}
   // delete Task and edit User in parallel operation
-  const deadTask = Task.findOneAndRemoveAsync({name: taskname})
-  const editUser = User.findOneAndUpdateAsync({username}, {$pull: {tasks: {$in: [task.id]}}})
+  const deadTask = Task.findByIdAndRemoveAsync(taskId)
+  const editUser = User.findOneAndUpdateAsync({username}, {$pull: {tasks: {$in: [taskId]}}})
   const [dt, eu] = await Promise.all([deadTask, editUser])
   if (!dt || !eu) {throw new Error('Agh! Failed to delete user.')}
   // // send success signal

@@ -1,5 +1,5 @@
 module.exports = {
-  mongoUrl: 'your-mongo-url-here',
+  mongoUrl: 'your-mongo-here',
   secret: 'my-secret',
   client: {
     clientId: 'my-awesome-clientid',
